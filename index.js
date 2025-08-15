@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const products = [
-    { id: 1, name: "product 1", price: 29.99 },
-    { id: 2, name: "product 2", price: 30.99 },
-    { id: 3, name: "product 3", price: 23.4 },
+    { id: 1, name: "product 1", price: 10 },
+    { id: 2, name: "product 2", price: 30 },
+    { id: 3, name: "product 3", price: 20 },
   ];
   const cart = [];
   const productList = document.getElementById("productList");
@@ -39,7 +39,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderCart() {
+    cartitem.innerText = "";
     let totalPrize = 0;
-    emptycart.classList.add("hidden");
+    if (cart.length > 0) {
+      emptycart.classList.add("hidden");
+      carttotal.classList.remove("hidden");
+      cart.forEach((item) => {
+        totalPrize += item.price;
+        const p = document.createElement("p");
+        p.innerHTML = `${item.name} - $${item.price}`;
+        cartitem.appendChild(p);
+        totalbill.textContent = `Total : ${totalPrize}`;
+      });
+    } else {
+      emptycart.classList.remove("hidden");
+    }
   }
+
+  checkout.addEventListener("click", () => {
+    alert("checked out successfully");
+  });
 });
