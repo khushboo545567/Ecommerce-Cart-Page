@@ -53,10 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     } else {
       emptycart.classList.remove("hidden");
+      totalbill.textContent = `Total : ${totalPrize}`;
     }
   }
 
   checkout.addEventListener("click", () => {
+    cart.length = 0;
     alert("checked out successfully");
+    renderCart();
   });
 });
